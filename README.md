@@ -1,4 +1,4 @@
-# slash-activities
+# Vizontele
 Voice Activities for Discord (with Slash Commands)
 
 # Invite
