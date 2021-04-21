@@ -12,13 +12,13 @@ const slash = new Slash({
 const embed = new MessageEmbed();
 
 slash.on("create", (d) => {
-    console.log(`Command created: ${JSON.parse(d.config.data).name}`)
+    console.log(`Slash komutu Oluşturuldu: ${JSON.parse(d.config.data).name}`)
 })
 
 slash.on("command", async (command) => {
-    if (command.name === "activities") {
+    if (command.name === "eğlence") {
         let channel = client.channels.cache.get(command.options.find(m => m.name === "channel").value);
-        if (channel.type !== "voice") return command.callback("Channel must be a voice channel.")
+        if (channel.type !== "voice") return command.callback("Seçtiğiniz kanal, ses kanalı olmalı!")
         if (command.options.find(m => m.name === "type").value === "yt") {
             fetch(`https://discord.com/api/v8/channels/${channel.id}/invites`, {
                     method: "POST",
@@ -37,9 +37,9 @@ slash.on("command", async (command) => {
                 })
                 .then(res => res.json())
                 .then(invite => {
-                    embed.setTitle("Activity added!")
-                    embed.setDescription(`Added **YouTube Together** to [${channel.name}](https://discord.gg/${invite.code})\n> Click on the hyperlink to join.`)
-                    embed.setFooter(`Requested by ${command.author.username + "#" + command.author.discriminator}`)
+                    embed.setTitle("Eğlence başlatıldı!")
+                    embed.setDescription(`[${channel.name}](https://discord.gg/${invite.code}) Kanalına Tıkla ve Arkadaşlarınla Birlikte YouTube İzle! `)
+                    embed.setFooter(`Komutu Kullanan Kullanıcı ${command.author.username + "#" + command.author.discriminator}`)
                     embed.setColor("#7289DA")
                     command.callback({
                         embeds: embed
@@ -65,9 +65,9 @@ slash.on("command", async (command) => {
                 })
                 .then(res => res.json())
                 .then(invite => {
-                    embed.setTitle("Activity added!")
-                    embed.setDescription(`Added **Poker Night** to [${channel.name}](https://discord.gg/${invite.code})\n> Click on the hyperlink to join.`)
-                    embed.setFooter(`Requested by ${command.author.username + "#" + command.author.discriminator}`)
+                    embed.setTitle("Eğlence başlatıldı!")
+                    embed.setDescription(`[${channel.name}](https://discord.gg/${invite.code}) Kanalına Tıkla ve Poker Night Oynunu Oyna!`)
+                    embed.setFooter(`Komutu Kullanan Kullanıcı ${command.author.username + "#" + command.author.discriminator}`)
                     embed.setColor("#7289DA")
                     command.callback({
                         embeds: embed
@@ -93,9 +93,9 @@ slash.on("command", async (command) => {
                 })
                 .then(res => res.json())
                 .then(invite => {
-                    embed.setTitle("Activity added!")
-                    embed.setDescription(`Added **Betrayal.io** to [${channel.name}](https://discord.gg/${invite.code})\n> Click on the hyperlink to join.`)
-                    embed.setFooter(`Requested by ${command.author.username + "#" + command.author.discriminator}`)
+                    embed.setTitle("Eğlence başlatıldı!")
+                    embed.setDescription(`[${channel.name}](https://discord.gg/${invite.code}) Kanalına Tıkla ve Betrayal.io Oynunu Oyna!`)
+                    embed.setFooter(`Komutu Kullanan Kullanıcı ${command.author.username + "#" + command.author.discriminator}`)
                     embed.setColor("#7289DA")
                     command.callback({
                         embeds: embed
@@ -121,9 +121,9 @@ slash.on("command", async (command) => {
                 })
                 .then(res => res.json())
                 .then(invite => {
-                    embed.setTitle("Activity added!")
-                    embed.setDescription(`Added **Fishington.io** to [${channel.name}](https://discord.gg/${invite.code})\n> Click on the hyperlink to join.`)
-                    embed.setFooter(`Requested by ${command.author.username + "#" + command.author.discriminator}`)
+                    embed.setTitle("Eğlence başlatıldı!")
+                    embed.setDescription(`[${channel.name}](https://discord.gg/${invite.code}) Kanalına Yıkla ve Fishington.io Oynunu Oyna!`)
+                    embed.setFooter(`Komutu Kullanan Kullanıcı ${command.author.username + "#" + command.author.discriminator}`)
                     embed.setColor("#7289DA")
                     command.callback({
                         embeds: embed
@@ -139,21 +139,21 @@ client.on("ready", () => {
     slash.create({
         guildOnly: false,
         data: {
-            name: "activities",
-            description: "Voice channel activities",
+            name: "eğlence",
+            description: "Ses kanalı aktiviteleri",
             options: [{
                     name: "channel",
-                    description: "Select the voice channel you want.",
+                    description: "Botu kullanmak istediğiniz ses kanalını seçin",
                     required: true,
                     type: 7,
                 },
                 {
                     name: "type",
-                    description: "Type of activity.",
+                    description: "Aktiviteler",
                     required: true,
                     type: 3,
                     choices: [{
-                            name: "YouTube Together",
+                            name: "YouTube İzle",
                             value: "yt"
                         },
                         {
