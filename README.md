@@ -2,7 +2,7 @@
 Voice Activities for Discord (with Slash Commands)
 
 # Invite
-> Invite the bot from [here](https://discord.com/oauth2/authorize?client_id=666547523460136961&permissions=16385&scope=bot%20applications.commands)
+> Invite the bot from [here](https://discord.com/api/oauth2/authorize?client_id=834225197891977227&permissions=2147866688&scope=bot%20applications.commands)
 
 # Deployment
 - Clone this repo
